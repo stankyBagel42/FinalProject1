@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">Final Project</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+
+    <string name="tower_1">Tower 1 \n100 coins</string>
+    <string name="tower_2">Tower 2 \n100 coins</string>
+    <string name="tower_3">Tower 3 \n100 coins</string>
+    <string name="tower_4">Tower 4 \n100 coins</string>
+
+    <string-array name="languages">
+        <item>English</item>
+        <item>Spanish</item>
+        <item>French</item>
+        <item>Mandarin</item>
+    </string-array>
+</resources>
