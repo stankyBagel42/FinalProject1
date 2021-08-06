@@ -1,6 +1,9 @@
+package com.example.finalproject;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Locale;
 
 // TO LOAD OBJECTS FROM FILE, CAST CLASS ONTO RETURN VALUE FROM Manager.objectLoader("filename")
 // i.e. Player loadedPlayer = (Player) Manager.objectLoader("testPlayer.ser")
@@ -24,7 +27,7 @@ public class Test {
 //            Manager.writeObjectToDisk(tempLevel,String.format("level%d_base",i));
 //        }
         for (int i = 0; i < 5; i++) {
-            Level tempLevel=(Level) Manager.objectLoader(String.format("GameData/BaseLevels/level%d_base",i));
+            Level tempLevel=(Level) Manager.objectLoader(String.format(Locale.US,"GameData/BaseLevels/level%d_base",i));
             System.out.println("=========================================================");
             System.out.printf("Level %d%n",tempLevel.level_ID);
             for (ArrayList<Enemy> wave:tempLevel.waves) {

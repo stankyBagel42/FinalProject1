@@ -1,3 +1,5 @@
+package com.example.finalproject;
+
 // This is where the constants of the game are stored
 public class config {
     // GAME STATS

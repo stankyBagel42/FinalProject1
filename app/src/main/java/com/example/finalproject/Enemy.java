@@ -1,3 +1,5 @@
+package com.example.finalproject;
+
 import java.io.Serializable;
 
 public class Enemy implements Serializable {
@@ -35,18 +37,22 @@ public class Enemy implements Serializable {
     }
 
     private void setSpeed(){
-        switch (this.variant) {
-            case "Enemy1" -> this.setHp_val(config.enemy1speed);
-            case "Enemy2" -> this.setHp_val(config.enemy2speed);
-            case "Enemy3" -> this.setHp_val(config.enemy3speed);
+        if(this.variant.equals("Enemy1")){
+            this.speed=config.enemy1speed;
+        }else if(this.variant.equals("Enemy2")){
+            this.speed=config.enemy2speed;
+        }else if(this.variant.equals("Enemy3")){
+            this.speed=config.enemy3speed;
         }
     }
 
     private void setMax_Health(){
-        switch (this.variant) {
-            case "Enemy1" -> this.setHp_val(config.enemy1health);
-            case "Enemy2" -> this.setHp_val(config.enemy2health);
-            case "Enemy3" -> this.setHp_val(config.enemy3health);
+        if(this.variant.equals("Enemy1")){
+            this.setHp_val(config.enemy1health);
+        }else if(this.variant.equals("Enemy2")){
+            this.setHp_val(config.enemy2health);
+        }else if(this.variant.equals("Enemy3")){
+            this.setHp_val(config.enemy3health);
         }
     }
 

@@ -1,3 +1,5 @@
+package com.example.finalproject;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -156,16 +158,14 @@ public class Tower implements Serializable {
         }
 
     private void setStats(){
-        switch (this.variant){
-            case "Tower1" -> {
-                this.setAtk_damage(config.tower1AtkDamage);
-                this.setAtk_speed(config.tower1AtkSpeed);
-                this.setAtk_range(config.tower1AtkRange);
-            }case "Tower2" ->{
-                this.setAtk_damage(config.tower2AtkDamage);
-                this.setAtk_speed(config.tower2AtkSpeed);
-                this.setAtk_range(config.tower2AtkRange);
-            }
+        if(this.variant.equals("Tower1")){
+            this.setAtk_damage(config.tower1AtkDamage);
+            this.setAtk_speed(config.tower1AtkSpeed);
+            this.setAtk_range(config.tower1AtkRange);
+        }else if(this.variant.equals("Tower2")){
+            this.setAtk_damage(config.tower2AtkDamage);
+            this.setAtk_speed(config.tower2AtkSpeed);
+            this.setAtk_range(config.tower2AtkRange);
         }
     }
 
