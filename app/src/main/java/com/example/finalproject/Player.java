@@ -1,13 +1,17 @@
 package com.example.finalproject;
 
+import android.widget.Spinner;
+
 import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.util.Hashtable;
 
-public class Player implements Serializable {
+public class Player implements Serializable{
+    public static Player currentUser;
     private int experience;
     private Hashtable<String,Double> stats;
     public String username;
-    public Hashtable<Level,Boolean> levels_completed;
+    public Hashtable<Integer,Boolean> levels_completed;
 
     public int getExperience() {
         return experience;
@@ -22,7 +26,12 @@ public class Player implements Serializable {
     }
 
     public void setStat(String stat_name,double value) {
-        this.stats.replace(stat_name,value);
+        this.stats.remove(stat_name);
+        this.stats.put(stat_name,value);
+    }
+
+    public boolean can_play(int level_id){
+        return level_id==0 || levels_completed.get(level_id-1);
     }
 
     public Player(String name){
@@ -34,5 +43,8 @@ public class Player implements Serializable {
         this.stats.put("Enemies Slain",0.0);
         this.stats.put("Gold Earned",0.0);
         this.stats.put("Waves Cleared",0.0);
+        for (int i = 0; i < Array.getLength(R.array.levels); i++) {
+            levels_completed.put(i,Boolean.FALSE);
+        }
     }
 }

@@ -16,6 +16,10 @@
             android:name=".SettingsActivity"
             android:exported="true"
             android:label="@string/title_activity_settings" />
+        <activity
+            android:name=".Level_Selection"
+            android:exported="true"
+            android:label="@string/title_activity_settings" />
         <activity android:name=".Game" />
         <activity
             android:name=".MainActivity"

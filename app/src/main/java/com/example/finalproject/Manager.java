@@ -1,5 +1,7 @@
 package com.example.finalproject;
 
+import android.content.res.AssetManager;
+
 import java.io.*;
 import java.util.ArrayList;
 
@@ -25,11 +27,11 @@ public class Manager {
     // parameter is Object, allowing us to save any object to file
     public static void writeObjectToDisk(Object obj, String name) throws IOException {
         if(obj instanceof Player){
-            name="GameData/PlayerData/"+name;
+            name="Assets/PlayerData/"+name;
         }else if(obj instanceof Level){
-            name="GameData/LevelData/"+name;
+            name="Assets/LevelData/"+name;
         }else{
-            name="GameData/OtherData/"+name;
+            name="Assets/OtherData/"+name;
         }
         //Create file output stream
         FileOutputStream fileOutStr = new FileOutputStream(name);
@@ -44,11 +46,12 @@ public class Manager {
 
     public static Object objectLoader(String filename) throws IOException,
             ClassNotFoundException{
-        FileInputStream fileInStr = new FileInputStream(filename);
-        ObjectInputStream objInStr = new ObjectInputStream(fileInStr);
+        AssetManager assetManager= MainActivity.assetManager;
+        InputStream is = assetManager.open(filename);
+        ObjectInputStream objInStr = new ObjectInputStream(is);
         Object obj = (Object) objInStr.readObject();
         objInStr.close();
-        fileInStr.close();
+        is.close();
 
         return obj;
     }
