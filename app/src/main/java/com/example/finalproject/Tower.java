@@ -5,7 +5,10 @@ import java.util.ArrayList;
 
 import static java.lang.Math.sqrt;
 
-public class Tower implements Serializable {
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+public class Tower extends AppCompatActivity implements Serializable {
     public String variant;
     public String targetting;
     private ArrayList<Tower> nearby_allies;
@@ -52,8 +55,8 @@ public class Tower implements Serializable {
         this.atk_damage = atk_damage;
     }
 
-    private double dist(double x1, double y1, double x2, double y2){
-        return sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2));
+    private double dist(double x1, double y1, double x2, double y2) {
+        return sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
     }
 
     // Update this.in_range to include only enemies which are in range of this tower
@@ -70,126 +73,141 @@ public class Tower implements Serializable {
                 }
             }
             this.in_range = in_range;
-        }else if(this.variant.equals("Tower2")){
+        } else if (this.variant.equals("Tower2")) {
             ArrayList<Tower> nearby_allies = new ArrayList<>();
-            for (Tower ally:allies) {
+            for (Tower ally : allies) {
                 double allyXLocation = ally.xLocation;
                 double allyYLocation = ally.yLocation;
-                double distance = dist(this.xLocation,this.yLocation,allyXLocation,allyYLocation);
-                if (distance < this.atk_range){
+                double distance = dist(this.xLocation, this.yLocation, allyXLocation, allyYLocation);
+                if (distance < this.atk_range) {
                     nearby_allies.add(ally);
                 }
             }
-            this.nearby_allies=nearby_allies;
+            this.nearby_allies = nearby_allies;
         }
     }
 
     // Of all of the enemies within range, get the enemy who is select by the current targetting mode
-    private void find_target(){
-        Enemy target=null;
-        if(this.targetting.equals("Near")){
+    private void find_target() {
+        Enemy target = null;
+        if (this.targetting.equals("Near")) {
             // Find the closest enemy, and set the target to that enemy
-            double min_distance=Double.POSITIVE_INFINITY;
-            for (Enemy enemy:this.in_range) {
-                double enemyXLocation=enemy.getxLocation();
-                double enemyYLocation=enemy.getyLocation();
-                double distance = dist(this.xLocation,this.yLocation,enemyXLocation,enemyYLocation);
-                if(distance<min_distance){
-                    min_distance=distance;
-                    target=enemy;
+            double min_distance = Double.POSITIVE_INFINITY;
+            for (Enemy enemy : this.in_range) {
+                double enemyXLocation = enemy.getxLocation();
+                double enemyYLocation = enemy.getyLocation();
+                double distance = dist(this.xLocation, this.yLocation, enemyXLocation, enemyYLocation);
+                if (distance < min_distance) {
+                    min_distance = distance;
+                    target = enemy;
                 }
             }
-        }else if(this.targetting.equals("Far")){
+        } else if (this.targetting.equals("Far")) {
             // Find the farthest enemy, and set the target to that enemy
-            double max_distance=Double.NEGATIVE_INFINITY;
-            for (Enemy enemy:this.in_range) {
-                double enemyXLocation=enemy.getxLocation();
-                double enemyYLocation=enemy.getyLocation();
-                double distance = dist(this.xLocation,this.yLocation,enemyXLocation,enemyYLocation);
-                if(distance>max_distance){
-                    max_distance=distance;
-                    target=enemy;
+            double max_distance = Double.NEGATIVE_INFINITY;
+            for (Enemy enemy : this.in_range) {
+                double enemyXLocation = enemy.getxLocation();
+                double enemyYLocation = enemy.getyLocation();
+                double distance = dist(this.xLocation, this.yLocation, enemyXLocation, enemyYLocation);
+                if (distance > max_distance) {
+                    max_distance = distance;
+                    target = enemy;
                 }
             }
-        }else if(this.targetting.equals("Strong")){
+        } else if (this.targetting.equals("Strong")) {
             // Find the strongest (by current Health) enemy, and set the target to that enemy
-            double max_health=Double.NEGATIVE_INFINITY;
-            for (Enemy enemy:this.in_range) {
-                if(enemy.getHp_val()>max_health){
-                    max_health=enemy.getHp_val();
-                    target=enemy;
+            double max_health = Double.NEGATIVE_INFINITY;
+            for (Enemy enemy : this.in_range) {
+                if (enemy.getHp_val() > max_health) {
+                    max_health = enemy.getHp_val();
+                    target = enemy;
                 }
             }
-        }else if(this.targetting.equals("Weak")){
+        } else if (this.targetting.equals("Weak")) {
             // Find the weakest (by current Health) enemy, and set the target to that enemy
-            double min_health=Double.POSITIVE_INFINITY;
-            for (Enemy enemy:this.in_range) {
-                if(enemy.getHp_val()<min_health){
-                    min_health=enemy.getHp_val();
-                    target=enemy;
+            double min_health = Double.POSITIVE_INFINITY;
+            for (Enemy enemy : this.in_range) {
+                if (enemy.getHp_val() < min_health) {
+                    min_health = enemy.getHp_val();
+                    target = enemy;
                 }
             }
         }
-        this.target=target;
+        this.target = target;
+    }
+
+    public String toString(){
+        return "Tower Type: "+this.variant+", Location: ("+this.xLocation+","+this.yLocation+"), Supported: "+this.supported;
     }
 
     // Counts down an internal variable (time until next attack) by this.atk_speed until it reaches 0 then it attacks
-    private void attack(){
+    private void attack() {
         // Make sure there is a target in range
-        if(this.variant.equals("Tower1") && target!=null){
-                if(!this.supported){
-                    this.atk_timer-=this.atk_speed;
-                }else{
-                    // Supported towers get 125% attack speed
-                    this.atk_timer-=1.25*this.atk_speed;
-                }
-                if(this.atk_timer<=0){
-                    // Set the target's hp val to it's current hp val - attack damage
-                    this.target.setHp_val(this.target.getHp_val() - this.atk_damage);
-                    this.atk_timer = config.attackTimerBase;
-                }
-        }else if(this.variant.equals("Tower2")){
-                for (Tower ally:this.nearby_allies) {
-                    if(!ally.supported){
-                        ally.supported=true;
-                    }
+        if (this.variant.equals("Tower1") && target != null) {
+            if (!this.supported) {
+                this.atk_timer -= this.atk_speed;
+            } else {
+                // Supported towers get 125% attack speed
+                this.atk_timer -= 1.25 * this.atk_speed;
+            }
+            if (this.atk_timer <= 0) {
+                // Set the target's hp val to it's current hp val - attack damage
+                this.target.setHp_val(this.target.getHp_val() - this.atk_damage);
+                this.atk_timer = config.attackTimerBase;
+            }
+        } else if (this.variant.equals("Tower2")) {
+            for (Tower ally : this.nearby_allies) {
+                if (!ally.supported) {
+                    ally.supported = true;
                 }
             }
         }
+    }
 
-    private void setStats(){
-        if(this.variant.equals("Tower1")){
+    private void setStats() {
+        if (this.variant.equals("Tower1")) {
             this.setAtk_damage(config.tower1AtkDamage);
             this.setAtk_speed(config.tower1AtkSpeed);
             this.setAtk_range(config.tower1AtkRange);
-        }else if(this.variant.equals("Tower2")){
+        } else if (this.variant.equals("Tower2")) {
             this.setAtk_damage(config.tower2AtkDamage);
             this.setAtk_speed(config.tower2AtkSpeed);
             this.setAtk_range(config.tower2AtkRange);
         }
     }
 
-    public void update(ArrayList<Enemy> enemies,ArrayList<Tower> towers){
-        this.find_enemies(enemies,towers);
+    public void update(ArrayList<Enemy> enemies, ArrayList<Tower> towers) {
+        this.find_enemies(enemies, towers);
         this.find_target();
         this.attack();
     }
 
-    public Tower(String variant, double xLoc, double yLoc){
-        this.in_range=new ArrayList<>();
-        this.nearby_allies=new ArrayList<>();
-        this.variant=variant;
-        this.xLocation=xLoc;
-        this.yLocation=yLoc;
-        this.target=null;
+    public Tower(String variant, double xLoc, double yLoc) {
+        this.in_range = new ArrayList<>();
+        this.nearby_allies = new ArrayList<>();
+        this.variant = variant;
+        this.xLocation = xLoc;
+        this.yLocation = yLoc;
+        this.target = null;
         this.setStats();
     }
 
-    public Tower(String variant){
-        this.in_range=new ArrayList<>();
-        this.nearby_allies=new ArrayList<>();
-        this.variant=variant;
-        this.target=null;
+    public Tower(String variant) {
+        this.in_range = new ArrayList<>();
+        this.nearby_allies = new ArrayList<>();
+        this.variant = variant;
+        this.target = null;
         this.setStats();
+    }
+
+    public Tower(@NonNull Tower toCopy) {
+        this.variant = new String(toCopy.variant);
+        this.in_range = new ArrayList<>(toCopy.in_range);
+        this.nearby_allies = new ArrayList<>(toCopy.nearby_allies);
+        this.target = null;
+        this.setStats();
+    }
+
+    public Tower() {
     }
 }

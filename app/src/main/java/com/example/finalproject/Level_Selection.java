@@ -1,16 +1,20 @@
 package com.example.finalproject;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.IOException;
+
 public class Level_Selection extends AppCompatActivity {
+    public static SpinnerActivity level_viewer;
+    public static SpinnerActivity difficulty_viewer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,8 +22,8 @@ public class Level_Selection extends AppCompatActivity {
         // Represent the spinners in code so we can access their selected values
         Spinner level_select = findViewById(R.id.level_selection);
         Spinner difficulty_select = findViewById(R.id.difficulty_selection);
-        SpinnerActivity level_viewer = new SpinnerActivity(level_select);
-        SpinnerActivity difficulty_viewer = new SpinnerActivity(difficulty_select);
+        level_viewer = new SpinnerActivity(level_select);
+        difficulty_viewer = new SpinnerActivity(difficulty_select);
         findViewById(R.id.back_level_selection).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -30,9 +34,17 @@ public class Level_Selection extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String level=level_viewer.selected;
-                if(Player.currentUser.can_play(level.charAt(level.length()-1))){
-                    Intent intent = new Intent(view.getContext(), Game.class);
-                    startActivity(intent);
+//                if(Player.currentUser.can_play(level.charAt(level.length()-1))){
+                if(level.charAt(level.length()-1)=='1'){
+                    try{
+                        Intent intent = new Intent(view.getContext(), Game.class);
+                        startActivity(intent);
+                        MainActivity.activeLevel= (Level) Manager.objectLoader("LevelData/level1.ser");
+                    }catch(Exception e){
+                        e.printStackTrace();
+                        Log.d("ERROR", e.toString());
+                        Log.d("ERROR", e.getMessage());
+                    }
                 }else{
                     Context context = getApplicationContext();
                     CharSequence text = "You have to beat the level before in order to play the next level";

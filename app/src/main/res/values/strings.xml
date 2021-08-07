@@ -1,6 +1,12 @@
 <resources>
     <string name="app_name">Final Project</string>
     <string name="title_activity_settings">SettingsActivity</string>
+    <string name="title_player_activity">PlayerActivity</string>
+    <string name="title_enemy_activity">EnemyActivity</string>
+    <string name="title_tower_activity">TowerActivity</string>
+    <string name="title_level_selection_activity">LevelSelectionActivity</string>
+    <string name="title_level_activity">LevelActivity</string>
+    <string name="title_manager_activity">ManagerActivity</string>
 
     <!-- Preference Titles -->
     <string name="messages_header">Messages</string>
@@ -17,10 +23,8 @@
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
 
-    <string name="tower_1">Tower 1 \n100 coins</string>
-    <string name="tower_2">Tower 2 \n100 coins</string>
-    <string name="tower_3">Tower 3 \n100 coins</string>
-    <string name="tower_4">Tower 4 \n100 coins</string>
+    <string name="tower_1">Tower 1 \n10 coins</string>
+    <string name="tower_2">Tower 2 \n50 coins</string>
 
     <string-array name="languages">
         <item>English</item>

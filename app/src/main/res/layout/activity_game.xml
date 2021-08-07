@@ -25,18 +25,29 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/game_settings" />
 
+    <Button
+        android:id="@+id/next_wave_button"
+        android:layout_width="110dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="16dp"
+        android:text="Next Wave"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/store" />
+
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:rotation="90"
-        android:scaleX="1.8"
-        android:scaleY="1.79"
+        android:rotation="0"
+        android:scaleX="1.3"
+        android:scaleY="1"
+        android:src="@drawable/background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@drawable/background" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/lives_remaining"
@@ -52,85 +63,94 @@
 
     <TextView
         android:id="@+id/enemy_spawn"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="203dp"
-        app:layout_constraintBottom_toTopOf="@+id/turn_1"
-        app:layout_constraintEnd_toEndOf="@+id/turn_1"
-        app:layout_constraintStart_toStartOf="@+id/turn_1"
+        android:layout_width="12dp"
+        android:layout_height="4dp"
+        android:layout_marginStart="308dp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/turn_1"
-        android:layout_width="30dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="90dp"
-        android:layout_marginBottom="514dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/enemy_spawn" />
+        android:layout_width="11dp"
+        android:layout_height="4dp"
+        android:layout_marginStart="308dp"
+        android:layout_marginTop="188dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/turn_2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="242dp"
-        android:layout_marginBottom="127dp"
-        app:layout_constraintBottom_toTopOf="@+id/turn_3"
-        app:layout_constraintEnd_toEndOf="@+id/turn_3"
-        app:layout_constraintStart_toStartOf="@+id/turn_3"
+        android:layout_width="8dp"
+        android:layout_height="3dp"
+        android:layout_marginStart="160dp"
+        android:layout_marginTop="188dp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/turn_3"
-        android:layout_width="30dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="149dp"
-        android:layout_marginBottom="348dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="7dp"
+        android:layout_height="7dp"
+        android:layout_marginStart="160dp"
+        android:layout_marginTop="320dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/turn_2" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/turn_4"
-        android:layout_width="30dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="31dp"
-        android:layout_marginTop="407dp"
-        android:layout_marginBottom="181dp"
-        app:layout_constraintBottom_toTopOf="@+id/turn_5"
-        app:layout_constraintStart_toEndOf="@+id/turn_3"
+        android:layout_width="11dp"
+        android:layout_height="7dp"
+        android:layout_marginStart="224dp"
+        android:layout_marginTop="320dp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/turn_5"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="129dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/turn_4"
-        app:layout_constraintStart_toStartOf="@+id/turn_4"
-        app:layout_constraintTop_toBottomOf="@+id/turn_4" />
-
-    <TextView
-        android:id="@+id/turn_6"
-        android:layout_width="30dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="96dp"
-        android:layout_marginTop="626dp"
-        android:layout_marginBottom="90dp"
-        app:layout_constraintBottom_toTopOf="@+id/enemy_end"
+        android:layout_width="6dp"
+        android:layout_height="4dp"
+        android:layout_marginStart="224dp"
+        android:layout_marginTop="496dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/enemy_end"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="1dp"
+        android:id="@+id/turn_6"
+        android:layout_width="11dp"
+        android:layout_height="2dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginBottom="104dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/turn_6"
-        app:layout_constraintStart_toStartOf="@+id/turn_6"
-        app:layout_constraintTop_toBottomOf="@+id/turn_6" />
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/enemy_end"
+        android:layout_width="11dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <view
+        android:id="@+id/drawing_view"
+        class="com.example.finalproject.DrawingView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="298dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="146.5dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

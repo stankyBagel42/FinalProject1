@@ -2,11 +2,13 @@ package com.example.finalproject;
 
 import android.widget.Spinner;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.util.Hashtable;
 
-public class Player implements Serializable{
+public class Player  extends AppCompatActivity implements Serializable{
     public static Player currentUser;
     private int experience;
     private Hashtable<String,Double> stats;
@@ -46,5 +48,9 @@ public class Player implements Serializable{
         for (int i = 0; i < Array.getLength(R.array.levels); i++) {
             levels_completed.put(i,Boolean.FALSE);
         }
+    }
+
+    public Player(){
+
     }
 }
